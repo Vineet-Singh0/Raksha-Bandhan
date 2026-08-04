@@ -4,9 +4,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Raksha Bandhan</title>
-    <!-- FontAwesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Page turn click areas setup */
+      .page {
+        cursor: pointer;
+        user-select: none;
+      }
+      /* Keep buttons/video clickable without page turn */
+      .page button, .page video {
+        cursor: auto;
+      }
+    </style>
   </head>
   <body>
     <div class="motive">
@@ -19,18 +28,20 @@
     </div>
 
     <div class="book">
-      <div class="page cover-front" onclick="movePage(this, 1)">
+      <!-- Page 1 (Front Cover) -->
+      <div class="page cover-front">
         <h1>Happy</h1>
         <h1>Rakhhiiee</h1>
         <h1>💖</h1>
-        <img src="2.jpg" alt="Cover photo" style="width: 300px; aspect-ratio: 320 / 240; height: 240px; border-color: antiquewhite;">
-        <div class="hat"><i class="fab fa-pied-piper-hat"></i></div>
+        <img src="2.jpg" alt="" style="width: 300px; height: 240px; border-color: antiquewhite;">
         <h2>From Vineet💖</h2>
       </div>
 
-      <div class="page cover-front" onclick="movePage(this, 2)"></div>
+      <!-- Page 2 (Inside Cover Back) -->
+      <div class="page cover-front"></div>
 
-      <div class="page text-page" onclick="movePage(this, 3)">
+      <!-- Page 3 -->
+      <div class="page text-page">
         <p>Dear Sis, this is for you 🤞💖</p>
         <p>
           Having a sister like you is a blessing. You’ve been my protector, confidant, and friend. May this Raksha Bandhan bring you all the joy and happiness you deserve. <b>Happy Raksha Bandhan!</b>
@@ -41,10 +52,11 @@
         <br /><br />
         <p>Note: Play the video before reading.</p>
         <br /><br /><br />
-        <p>Please turn the page...</p>
+        <p><b>👉 Click anywhere on this page to turn...</b></p>
       </div>
 
-      <div class="page text-page" onclick="movePage(this, 4)">
+      <!-- Page 4 -->
+      <div class="page text-page">
         <p>
           Sisters are like angels who lift us to our feet when our wings forget how to fly. 
           On this Raksha Bandhan, I want to tell you that I’m always there for you, just like 
@@ -54,79 +66,91 @@
           Even though we may not be together today, the bond we share grows stronger with every passing day.
           Sending you lots of love and good wishes this Raksha Bandhan. Miss you, sister!
         </p>
-        <p>
-          To the most amazing sister in the world, thank you for all the love, care, and protection you've given me. 
-          On this Rakhi, I wish you all the happiness and success in the world. <b>Happy Raksha Bandhan!</b>
-        </p>
-        <p>
-          Though we may not always be together, the love and connection we have remain strong, no matter the distance. 
-          Your presence in my life has been a source of strength, joy, and comfort. I cherish every moment we’ve spent together 
-          and look forward to creating many more memories in the future.🏵️🏵️🏵️
-        </p>
       </div>
 
-      <div class="page text-page" onclick="movePage(this, 5)">
-        <img src="3.jpg" alt="Memory photo" width="320" height="240">
+      <!-- Page 5 -->
+      <div class="page text-page">
+        <img src="3.jpg" alt="" width="320" height="240">
         <p>
           Your unwavering belief in me has pushed me to achieve things I never thought possible, and I want you to know how much that means to me.
         </p>
         <p>
           As we celebrate this Raksha Bandhan, I wish you nothing but happiness, success, and fulfillment in everything you do. 
-          May you continue to shine brightly, and may our bond grow stronger with each passing day. 
-          Thank you for being the incredible sister you are, and for filling my life with so much love and joy. Happy Raksha Bandhan, dear sister!🌸🌸🌸
+          Happy Raksha Bandhan, dear sister!🌸🌸🌸
         </p>  
       </div>
 
-      <div class="page text-page" onclick="movePage(this, 6)">
+      <!-- Page 6 -->
+      <div class="page text-page">
         <p>
-          Raksha Bandhan is a day that fills my heart with warmth and nostalgia. I find myself reminiscing about the countless moments we've shared, each one contributing to the unbreakable bond we have today. From the early days of our sibling rivalry to the deep friendship we've built over the years, every memory with you is a treasure I hold dear. 
-          You’ve always been there, not just as a sister, but as someone who understands me in ways no one else can.💖💖
-        </p>
-        <p>
-          As we celebrate Raksha Bandhan this year, I am reminded of the countless times you've stood up for me and protected me. You've always had my back, no matter the situation, and that sense of security you provide is something I cherish deeply.
-          It's comforting to know that no matter what challenges life throws our way, we’ll face them together, just as we always have.
+          Raksha Bandhan is a day that fills my heart with warmth and nostalgia. I find myself reminiscing about the countless moments we've shared, each one contributing to the unbreakable bond we have today.💖💖
         </p>
       </div>
 
+      <!-- Page 7 -->
       <div class="page text-page">
         <p>
-          On this Raksha Bandhan, I want to express just how much you mean to me. You are more than just a sister; you are my best friend, my advisor, and my biggest supporter. I couldn’t imagine my life without you in it. As we tie the rakhi this year,
-          I pray that our bond continues to grow stronger and that you are blessed with all the happiness in the world. Happy Raksha Bandhan!
+          On this Raksha Bandhan, I want to express just how much you mean to me. You are my best friend, my advisor, and my biggest supporter.
         </p>
         <p>You are My Everything Sis 💖.</p>
         <h2>Happy Raksha Bandhan ~🏵️~</h2>
         <br />
-        <img src="4.jpg" alt="Closing photo" width="320" height="240">
+        <img src="4.jpg" alt="" width="320" height="240">
+        <br/><br/>
         <button id="botao1">YES Sure!</button>
       </div>
+
+      <!-- Page 8 (Back Cover) -->
+      <div class="page"></div>
     </div>
 
     <script>
-      document.getElementById("botao1").addEventListener("click", function () {
+      let currentPage = 1;
+
+      // Button Alert
+      document.getElementById("botao1").addEventListener("click", function (e) {
+        e.stopPropagation(); // Prevents page flip when clicking button
         alert("YAYY THANK U 😍❤️ , Drop a Message when you are Free ..");
       });
 
-      let currentPage = 1;
-
-      function toggleClass(e, toggleClassName) {
-        if (e.classList.contains(toggleClassName)) {
-          e.classList.remove(toggleClassName);
-        } else {
-          e.classList.add(toggleClassName);
+      function toggleClass(element, className) {
+        if (element) {
+          element.classList.toggle(className);
         }
       }
 
-      function movePage(e, page) {
+      function movePage(element, page) {
         if (page === currentPage) {
           currentPage += 2;
-          toggleClass(e, "left-side");
-          if (e.nextElementSibling) toggleClass(e.nextElementSibling, "left-side");
+          toggleClass(element, "left-side");
+          if (element.nextElementSibling) {
+            toggleClass(element.nextElementSibling, "left-side");
+          }
         } else if (page === currentPage - 1) {
           currentPage -= 2;
-          toggleClass(e, "left-side");
-          if (e.previousElementSibling) toggleClass(e.previousElementSibling, "left-side");
+          toggleClass(element, "left-side");
+          if (element.previousElementSibling) {
+            toggleClass(element.previousElementSibling, "left-side");
+          }
         }
       }
+
+      // Universal click handler for Laptop/Desktop mouse clicks
+      document.querySelectorAll('.page').forEach((pageElement) => {
+        pageElement.addEventListener('click', (e) => {
+          // Ignore clicks on video or button controls
+          if (e.target.tagName === 'BUTTON' || e.target.tagName === 'VIDEO' || e.target.tagName === 'SOURCE') {
+            return;
+          }
+
+          // Target the main .page div even if text/img inside was clicked
+          const targetPage = e.target.closest('.page');
+          if (targetPage) {
+            const pageIndex = Array.from(targetPage.parentNode.children).indexOf(targetPage) + 1;
+            movePage(targetPage, pageIndex);
+          }
+        });
+      });
     </script>
   </body>
 </html>
