@@ -1,10 +1,9 @@
 let currentPage = 1;
 
-function toggleClass(element, toggleClassName) {
-  if (element.classList.contains(toggleClassName)) {
-    element.classList.remove(toggleClassName);
-  } else {
-    element.classList.add(toggleClassName);
+// Utility to safely toggle a class on an element
+function toggleClass(element, className) {
+  if (element && element.classList) {
+    element.classList.toggle(className);
   }
 }
 
@@ -12,29 +11,35 @@ function movePage(element, page) {
   if (page === currentPage) {
     currentPage += 2;
     toggleClass(element, "left-side");
-    toggleClass(element.nextElementSibling, "left-side");
+    if (element.nextElementSibling) {
+      toggleClass(element.nextElementSibling, "left-side");
+    }
   } else if (page === currentPage - 1) {
     currentPage -= 2;
     toggleClass(element, "left-side");
-    toggleClass(element.previousElementSibling, "left-side");
+    if (element.previousElementSibling) {
+      toggleClass(element.previousElementSibling, "left-side");
+    }
   }
 }
 
-function handleTouchStart(e) {
-  const touch = e.touches[0];
-  const pageElement = document.elementFromPoint(touch.clientX, touch.clientY);
+// Universal handler for both mouse and touch
+function handlePageTurn(e) {
+  // Ignore clicks on buttons/links inside pages so controls still work
+  if (e.target.tagName === 'BUTTON' || e.target.tagName === 'A' || e.target.tagName === 'VIDEO') {
+    return;
+  }
 
-  if (pageElement && pageElement.classList.contains('page')) {
+  // Find the parent .page element even if a child (p, img, h1) was clicked
+  const pageElement = e.target.closest('.page');
+  
+  if (pageElement) {
     const pageIndex = Array.from(pageElement.parentNode.children).indexOf(pageElement) + 1;
     movePage(pageElement, pageIndex);
   }
 }
 
+// Modern mobile and desktop browsers handle click/tap events cleanly together
 document.querySelectorAll('.page').forEach(pageElement => {
-  pageElement.addEventListener('click', (e) => {
-    const pageIndex = Array.from(e.currentTarget.parentNode.children).indexOf(e.currentTarget) + 1;
-    movePage(e.currentTarget, pageIndex);
-  });
-  
-  pageElement.addEventListener('touchstart', handleTouchStart, { passive: true });
+  pageElement.addEventListener('click', handlePageTurn);
 });
